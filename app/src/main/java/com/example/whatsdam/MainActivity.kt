@@ -1,5 +1,6 @@
 package com.example.whatsdam
 
+import android.content.Context
 import android.content.Intent
 import android.net.InetAddresses.isNumericAddress
 import android.net.InetAddresses.parseNumericAddress
@@ -7,6 +8,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Telephony.Mms.Intents
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
@@ -23,14 +25,15 @@ class MainActivity : AppCompatActivity() {
         val connBut=binding.buttonConnect
         val iptext=binding.serverAddressText
 
-        var ipstr:String = iptext.text.toString()
 
-        var nick=nickText.text.toString()
 
         connBut.setOnClickListener{
+            var ipstr:String = iptext.text.toString()
 
-            if (!nick.equals("") and isNumericAddress(ipstr)){
-                var ip= parseNumericAddress(ipstr)
+            var nick=nickText.text.toString()
+            Log.d("AAAAAA",ipstr)
+            if (nick!="" && isNumericAddress(ipstr)){
+                //var ip= parseNumericAddress(ipstr)
                 val intent = Intent(baseContext,MessagesWindow::class.java)
                 startActivity(intent)
 
